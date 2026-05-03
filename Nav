@@ -1,0 +1,46 @@
+import { motion } from "framer-motion";
+import { Phone } from "lucide-react";
+
+const links = [
+  { href: "#services", label: "Services" },
+  { href: "#why", label: "Why Us" },
+  { href: "#reviews", label: "Reviews" },
+  { href: "#contact", label: "Contact" },
+];
+
+export function Nav() {
+  return (
+    <motion.header
+      initial={{ y: -30, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/40 border-b border-border/40"
+    >
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="#top" className="flex items-baseline gap-2">
+          <span className="font-display text-xl text-cream">Garrett</span>
+          <span className="font-display text-xl text-copper">&amp; Son</span>
+        </a>
+        <nav className="hidden md:flex items-center gap-8">
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="text-sm text-muted-foreground hover:text-copper transition-colors relative group"
+            >
+              {l.label}
+              <span className="absolute left-0 -bottom-1 h-px w-0 bg-copper transition-all duration-300 group-hover:w-full" />
+            </a>
+          ))}
+        </nav>
+        <a
+          href="tel:8647081850"
+          className="inline-flex items-center gap-2 rounded-full bg-copper text-copper-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition shadow-glow"
+        >
+          <Phone className="h-4 w-4" />
+          <span className="hidden sm:inline">(864) 708-1850</span>
+        </a>
+      </div>
+    </motion.header>
+  );
+}
