@@ -1,0 +1,49 @@
+import { motion } from "framer-motion";
+
+const steps = [
+  { n: "01", t: "Free Inspection", d: "Call us. We come out, inspect honestly, and give you a written estimate." },
+  { n: "02", t: "Clear Plan & Price", d: "We walk you through shingle options, timeline, and exact cost. No surprises." },
+  { n: "03", t: "Skilled Install", d: "Our crew tears off, repairs decking, and installs your new roof — usually in 1–2 days." },
+  { n: "04", t: "Spotless Handoff", d: "Cleanup, magnet-sweep, final walkthrough. You enjoy a roof built to last." },
+];
+
+export function Process() {
+  return (
+    <section className="relative py-32 px-6 bg-ink">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="max-w-2xl mb-20"
+        >
+          <span className="text-xs uppercase tracking-[0.3em] text-copper">How it works</span>
+          <h2 className="mt-4 font-display text-5xl text-cream text-balance">
+            Four steps. <span className="italic text-copper/90">Zero stress.</span>
+          </h2>
+        </motion.div>
+
+        <div className="relative grid md:grid-cols-4 gap-8">
+          <div className="hidden md:block absolute top-6 left-0 right-0 h-px bg-border" />
+          {steps.map((s, i) => (
+            <motion.div
+              key={s.n}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.15 }}
+              className="relative"
+            >
+              <div className="h-12 w-12 rounded-full bg-copper text-copper-foreground flex items-center justify-center font-display text-lg shadow-glow relative z-10">
+                {s.n}
+              </div>
+              <h3 className="mt-6 font-display text-2xl text-cream">{s.t}</h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.d}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
