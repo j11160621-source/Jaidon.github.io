@@ -1,0 +1,115 @@
+import { motion } from "framer-motion";
+import { ArrowRight, Star } from "lucide-react";
+import heroImg from "@/assets/hero-roof.jpg";
+
+export function Hero() {
+  return (
+    <section id="top" className="relative min-h-screen w-full overflow-hidden grain">
+      <motion.div
+        initial={{ scale: 1.15 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 2.4, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute inset-0"
+      >
+        <img
+          src={heroImg}
+          alt="Newly installed architectural shingle roof at golden hour"
+          className="h-full w-full object-cover"
+          width={1920}
+          height={1280}
+        />
+        <div className="absolute inset-0 bg-gradient-hero" />
+        <div className="absolute inset-0 bg-gradient-radial" />
+      </motion.div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-40 pb-24 min-h-screen flex flex-col justify-end">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+          className="flex items-center gap-2 mb-6"
+        >
+          <div className="flex">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="h-4 w-4 fill-copper text-copper" />
+            ))}
+          </div>
+          <span className="text-sm text-cream/80">5.0 · 20+ Google Reviews</span>
+        </motion.div>
+
+        <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl text-cream max-w-5xl text-balance leading-[0.95]">
+          {"Roofs built to last.".split(" ").map((w, i) => (
+            <motion.span
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 + i * 0.08, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              className="inline-block mr-3"
+            >
+              {w}
+            </motion.span>
+          ))}
+          <br />
+          <motion.span
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.9 }}
+            className="inline-block italic text-copper"
+          >
+            Promises kept.
+          </motion.span>
+        </h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.0, duration: 0.8 }}
+          className="mt-8 max-w-xl text-lg text-cream/85"
+        >
+          A family-owned roofing company in Inman, SC — known for honest
+          pricing, prompt response, and craftsmanship that outlasts the
+          weather.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="mt-10 flex flex-wrap items-center gap-4"
+        >
+          <a
+            href="#contact"
+            className="group inline-flex items-center gap-2 rounded-full bg-copper text-copper-foreground px-7 py-4 text-base font-medium shadow-glow hover:scale-[1.03] transition-transform"
+          >
+            Get Your Free Estimate
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </a>
+          <a
+            href="tel:8647081850"
+            className="inline-flex items-center gap-2 rounded-full border border-cream/30 text-cream px-7 py-4 text-base hover:bg-cream/10 transition"
+          >
+            Call (864) 708-1850
+          </a>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.6, duration: 1 }}
+          className="mt-16 grid grid-cols-3 gap-8 max-w-2xl border-t border-cream/15 pt-8"
+        >
+          {[
+            ["20+", "Yrs experience"],
+            ["100%", "Family owned"],
+            ["5.0★", "Customer rating"],
+          ].map(([k, v]) => (
+            <div key={k}>
+              <div className="font-display text-3xl text-copper">{k}</div>
+              <div className="text-xs uppercase tracking-widest text-cream/60 mt-1">{v}</div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
