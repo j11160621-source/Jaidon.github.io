@@ -1,0 +1,54 @@
+import { motion } from "framer-motion";
+import { Hammer, Home, Search, ShieldCheck, Wrench, CloudLightning } from "lucide-react";
+
+const services = [
+  { icon: Home, title: "Roof Installation", desc: "Full-roof installs with premium architectural shingles, built to weather decades of Carolina storms." },
+  { icon: Wrench, title: "Roof Repair", desc: "Leaks, missing shingles, flashing — fixed fast, fixed right, the first time." },
+  { icon: CloudLightning, title: "Storm & Wind Damage", desc: "Rapid response after severe weather. We work directly with insurance adjusters." },
+  { icon: Search, title: "Roof Inspections", desc: "Honest, detailed inspections with photo reports — no scare tactics, ever." },
+  { icon: Hammer, title: "Sheathing & Decking", desc: "Rotted decking replaced and reinforced before the new roof goes on." },
+  { icon: ShieldCheck, title: "Workmanship Warranty", desc: "Backed by our reputation in Inman and the upstate SC community since day one." },
+];
+
+export function Services() {
+  return (
+    <section id="services" className="relative py-32 px-6">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="max-w-2xl mb-20"
+        >
+          <span className="text-xs uppercase tracking-[0.3em] text-copper">What we do</span>
+          <h2 className="mt-4 font-display text-5xl sm:text-6xl text-cream text-balance">
+            Every shingle. <span className="italic text-copper/90">Every detail.</span>
+          </h2>
+          <p className="mt-6 text-muted-foreground text-lg">
+            From a single repair to a full tear-off and replacement, our crew
+            treats your home like our own.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border/40 rounded-2xl overflow-hidden">
+          {services.map((s, i) => (
+            <motion.div
+              key={s.title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: i * 0.06 }}
+              className="group bg-card p-10 hover:bg-secondary transition-colors duration-500 relative overflow-hidden"
+            >
+              <s.icon className="h-8 w-8 text-copper transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[-6deg]" />
+              <h3 className="mt-6 font-display text-2xl text-cream">{s.title}</h3>
+              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+              <div className="absolute bottom-0 left-0 h-px w-0 bg-copper transition-all duration-500 group-hover:w-full" />
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
