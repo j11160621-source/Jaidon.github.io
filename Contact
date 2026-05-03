@@ -1,0 +1,91 @@
+import { motion } from "framer-motion";
+import { Phone, MapPin, Clock, ArrowRight } from "lucide-react";
+import homeImg from "@/assets/home-exterior.jpg";
+
+export function Contact() {
+  return (
+    <section id="contact" className="relative py-32 px-6 overflow-hidden">
+      <div className="absolute inset-0">
+        <img src={homeImg} alt="" className="w-full h-full object-cover opacity-15" loading="lazy" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+      </div>
+
+      <div className="relative max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <span className="text-xs uppercase tracking-[0.3em] text-copper">Get started</span>
+          <h2 className="mt-4 font-display text-5xl sm:text-7xl text-cream text-balance">
+            Ready for a roof <br />
+            <span className="italic text-copper">done right?</span>
+          </h2>
+          <p className="mt-6 text-muted-foreground max-w-xl mx-auto">
+            Call now or send us your details — we'll be back in touch within one business day with your free estimate.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-5 gap-8">
+          <motion.form
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            onSubmit={(e) => {
+              e.preventDefault();
+              const data = new FormData(e.currentTarget);
+              const body = `Name: ${data.get("name")}%0AEmail: ${data.get("email")}%0APhone: ${data.get("phone")}%0AService: ${data.get("service")}%0AMessage: ${data.get("message")}`;
+              window.location.href = `mailto:info@garrettandsonroofing.com?subject=Free Estimate Request&body=${body}`;
+            }}
+            className="md:col-span-3 bg-card border border-border rounded-2xl p-8 space-y-4"
+          >
+            <div className="grid sm:grid-cols-2 gap-4">
+              <input name="name" required placeholder="Full name" className="w-full bg-background border border-border rounded-lg px-4 py-3 text-cream placeholder:text-muted-foreground focus:border-copper focus:outline-none transition" />
+              <input name="phone" required placeholder="Phone" className="w-full bg-background border border-border rounded-lg px-4 py-3 text-cream placeholder:text-muted-foreground focus:border-copper focus:outline-none transition" />
+            </div>
+            <input name="email" type="email" placeholder="Email" className="w-full bg-background border border-border rounded-lg px-4 py-3 text-cream placeholder:text-muted-foreground focus:border-copper focus:outline-none transition" />
+            <select name="service" className="w-full bg-background border border-border rounded-lg px-4 py-3 text-cream focus:border-copper focus:outline-none transition">
+              <option>Roof Installation</option>
+              <option>Roof Repair</option>
+              <option>Storm Damage</option>
+              <option>Inspection</option>
+              <option>Other</option>
+            </select>
+            <textarea name="message" rows={4} placeholder="Tell us about your project..." className="w-full bg-background border border-border rounded-lg px-4 py-3 text-cream placeholder:text-muted-foreground focus:border-copper focus:outline-none transition resize-none" />
+            <button type="submit" className="group inline-flex items-center gap-2 rounded-full bg-copper text-copper-foreground px-7 py-4 font-medium shadow-glow hover:scale-[1.02] transition">
+              Request My Free Estimate
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </button>
+          </motion.form>
+
+          <motion.aside
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.35 }}
+            className="md:col-span-2 space-y-4"
+          >
+            <a href="tel:8647081850" className="block bg-copper text-copper-foreground rounded-2xl p-6 hover:scale-[1.02] transition shadow-glow">
+              <Phone className="h-5 w-5" />
+              <div className="mt-3 text-xs uppercase tracking-widest opacity-80">Call now</div>
+              <div className="font-display text-2xl mt-1">(864) 708-1850</div>
+            </a>
+            <div className="bg-card border border-border rounded-2xl p-6">
+              <MapPin className="h-5 w-5 text-copper" />
+              <div className="mt-3 text-xs uppercase tracking-widest text-muted-foreground">Visit</div>
+              <div className="text-cream mt-1">11631 Asheville Hwy<br />Suite G, Inman, SC 29349</div>
+            </div>
+            <div className="bg-card border border-border rounded-2xl p-6">
+              <Clock className="h-5 w-5 text-copper" />
+              <div className="mt-3 text-xs uppercase tracking-widest text-muted-foreground">Hours</div>
+              <div className="text-cream mt-1 text-sm">Mon–Fri · 8:30 AM – 5:00 PM<br />Sat–Sun · By appointment</div>
+            </div>
+          </motion.aside>
+        </div>
+      </div>
+    </section>
+  );
+}
